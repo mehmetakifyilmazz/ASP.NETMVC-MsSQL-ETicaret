@@ -1,0 +1,25 @@
+﻿@using Mwear.MvcWebUI.Models;
+@model IEnumerable<ProductModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+
+
+<div class="conteiner pb-10"
+        
+                    <div class="col-md-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"></h4>
+
+
+
+                                @Html.Partial("_Productlist", Model)
+
+                            </div>
+
+
+                            </div>
+

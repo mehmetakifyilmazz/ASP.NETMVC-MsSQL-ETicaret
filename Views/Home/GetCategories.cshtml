@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Mwear.MvcWebUI.Entity.Category>
+
+@{ 
+    var selectedCategory = Url.RequestContext.RouteData.Values["id"];
+}
+
+    @foreach (var item in Model)
+
+    {
+         <a href="/Home/List/@item.Id">@item.Name </a>
+    
+
+    }
+

@@ -1,0 +1,91 @@
+﻿@using Mwear.MvcWebUI.Models
+@model Mwear.MvcWebUI.Models.Cart
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="conteiner pb-5">
+    <div class="row">
+
+
+
+        <h2>Alışveriş Sepeti</h2>
+
+
+        @if (Model.CartLines.Count > 0)
+        {
+            <table class="table-bordered">
+                <thead>
+                    <tr>
+
+                        <th></th>
+                        <th>Adet</th>
+                        <th>Ürün Adı</th>
+                        <th>Fiyat</th>
+                        <th>Toplam Tutar</th>
+                        <td></td>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CartLines)
+                    {
+
+
+                        <tr>
+                            <td>
+                                <img src="~/Upload/@item.Product.Image" width="200" height="200" />
+                            </td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Product.Name</td>
+                            <td>@item.Product.Price</td>
+
+                            <td>@((item.Product.Price*item.Quantity).ToString("c"))</td>
+
+
+                            <td>
+                                @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                                {
+                                    @Html.Hidden("Id", item.Product.Id)
+
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fa-solid fa-trash-xmark"></i>Sil
+                                    </button>
+
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+
+                        <td colspan="4"></td>
+
+                        <td>
+                            @Model.Total().ToString("c")
+                        </td>
+                    </tr>
+
+                </tfoot>
+
+            </table>
+        
+            <div class="text-center">
+                <br />
+                <a href="/Home/List" class="btn btn-primary">Alışverişe Devam Et</a>
+                <a href="/Cart/Checkout" class="btn btn-primary">Alışverişi Tamamla</a>
+            </div>
+
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                Alışveriş Sepetinizde Ürün Bulunmamaktadır.
+            </div>
+        }
+
+    </div>
+    </div>
+
+
